@@ -9,16 +9,17 @@ matrix:
     - { os: linux, env: PYTHON_VERSION=3.5 }
     - { os: osx, env: PYTHON_VERSION=3.5 }
 
+env:
+  global:
+  - ENCRYPTION_LABEL: "898e0934cf65"
+  - COMMIT_AUTHOR_EMAIL: "janos.sallai@vanderbilt.edu"
+
 install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install md5sha1sum; fi
-  - source devtools/travis-ci/install_conda.sh
+  - git fetch -t
+  - source devtools/travis-ci/install.sh
   - conda config --add channels omnia
-  - conda config --add channels bioconda
-  - conda install -yq libpng=1.6.22 matplotlib networkx oset six pytest mdtraj oset openmm nglview
-  - pip install parmed
-  - pip install plyplus
-  - pip install git+http://github.com/imodels/mbuild.git#egg=mbuild
-  - pip install -e .
+  - conda config --add channels mosdef
 
 script:
-  - py.test -v
+  - conda build devtools/conda-recipe
