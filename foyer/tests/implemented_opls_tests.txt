@@ -41,3 +41,7 @@ fluorobenzene
 2-propylpyrrole
 1-cyclopropylpropane
 cyclohexane
+nitromethane
+o-xylene
+toluene
+124-trimethylbenzene
